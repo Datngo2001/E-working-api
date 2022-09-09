@@ -5,6 +5,7 @@ import { CLIENT_URL, DATABASE_URL, PORT } from "./config";
 import UserRouter from "./routes/user.route";
 import AuthRouter from "./routes/auth.route";
 import authenMiddleware from "./middlewares/authen.middleware";
+import ProjectRouter from "./routes/project.route";
 
 mongoose.connect(DATABASE_URL);
 const database = mongoose.connection;
@@ -23,6 +24,7 @@ app.use(authenMiddleware);
 
 app.use("/auth", AuthRouter);
 app.use("/user", UserRouter);
+app.use("/project", ProjectRouter);
 
 app.listen(PORT, () => {
   console.log("Server started");

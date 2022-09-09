@@ -29,9 +29,7 @@ AuthRouter.post(
         ),
       });
     } catch (error: any) {
-      return res.status(400).send({
-        message: "Your email existed",
-      });
+      return res.status(401).json({ message: error.message });
     }
   }
 );

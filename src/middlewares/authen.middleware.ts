@@ -1,9 +1,10 @@
 import { SECRET_KEY } from "../config";
 import { NextFunction, Request, Response } from "express";
 import jsonwebtoken from "jsonwebtoken";
+import { RequestWithUser } from "interfaces/auth.interface";
 
 export default async function authenMiddleware(
-  req: any,
+  req: Request,
   res: Response,
   next: NextFunction
 ) {
@@ -12,21 +13,20 @@ export default async function authenMiddleware(
     req.headers.authorization &&
     req.headers.authorization.split(" ")[0] === "Bearer"
   ) {
-    let tokeData;
+    let tokenData;
+    const reqWithUser = req as RequestWithUser;
     try {
-      tokeData = await jsonwebtoken.verify(
+      tokenData = await jsonwebtoken.verify(
         req.headers.authorization.split(" ")[1],
         SECRET_KEY
       );
-      req.user = tokeData;
+      reqWithUser.user = tokenData;
       next();
     } catch (error) {
       console.log(error);
-      req.user = undefined;
-      next();
+      next(error);
     }
   } else {
-    req.user = undefined;
     next();
   }
 }
