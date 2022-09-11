@@ -24,12 +24,9 @@ const columnSchema = new mongoose.Schema({
   name: {
     type: String,
   },
-  tasks: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Task",
-    },
-  ],
+  order: {
+    type: Number,
+  },
 });
 
 const Column = mongoose.model("Column", columnSchema);

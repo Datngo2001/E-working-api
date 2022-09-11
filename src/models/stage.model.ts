@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const epicSchema = new mongoose.Schema({
+const stageSchema = new mongoose.Schema({
   project: {
     type: Schema.Types.ObjectId,
     ref: "Project",
@@ -34,12 +34,8 @@ const epicSchema = new mongoose.Schema({
     require: true,
     default: Date.now,
   },
-  boards: {
-    type: Schema.Types.ObjectId,
-    ref: "Board",
-  },
 });
 
-const Epic = mongoose.model("Epic", epicSchema);
+const Stage = mongoose.model("Stage", stageSchema);
 
-export default Epic;
+export default Stage;

@@ -6,6 +6,10 @@ import UserRouter from "./routes/user.route";
 import AuthRouter from "./routes/auth.route";
 import authenMiddleware from "./middlewares/authen.middleware";
 import ProjectRouter from "./routes/project.route";
+import StageRouter from "./routes/stage.route";
+import BoardRouter from "./routes/board.route";
+import ColumnRouter from "./routes/column.route";
+import TaskRouter from "./routes/task.route";
 
 mongoose.connect(DATABASE_URL);
 const database = mongoose.connection;
@@ -25,6 +29,10 @@ app.use(authenMiddleware);
 app.use("/auth", AuthRouter);
 app.use("/user", UserRouter);
 app.use("/project", ProjectRouter);
+app.use("/stage", StageRouter);
+app.use("/board", BoardRouter);
+app.use("/column", ColumnRouter);
+app.use("/task", TaskRouter);
 
 app.listen(PORT, () => {
   console.log("Server started");

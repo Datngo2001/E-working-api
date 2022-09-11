@@ -1,9 +1,9 @@
 import mongoose, { Schema } from "mongoose";
 
 const boardSchema = new mongoose.Schema({
-  epic: {
+  stage: {
     type: Schema.Types.ObjectId,
-    ref: "Epic",
+    ref: "Stage",
     require: true,
   },
   creator: {
@@ -21,12 +21,9 @@ const boardSchema = new mongoose.Schema({
     require: true,
     default: Date.now,
   },
-  columns: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Column",
-    },
-  ],
+  detail: {
+    type: String,
+  },
 });
 
 const Board = mongoose.model("Board", boardSchema);

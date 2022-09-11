@@ -33,12 +33,15 @@ ProjectRouter.post("/", async (req: RequestWithUser, res) => {
 
 ProjectRouter.put("/:projectId", async (req: RequestWithUser, res) => {
   try {
-    const project = await Project.findOne({
-      _id: req.params.projectId,
-      creator: req.user._id,
-    });
-    project?.$set(req.body);
-    const result = await project?.save();
+    const result = await Project.findOneAndUpdate(
+      {
+        _id: req.params.projectId,
+        creator: req.user._id,
+      },
+      {
+        ...req.body,
+      }
+    );
     res.json(result);
   } catch (error: any) {
     res.status(500).json({ message: error.message });
