@@ -39,8 +39,6 @@ app.use(
 );
 app.use(authenMiddleware);
 
-app.use("/auth", AuthRouter);
-app.use("/user", UserRouter);
 app.use("/project", ProjectRouter);
 app.use("/stage", StageRouter);
 app.use("/board", BoardRouter);

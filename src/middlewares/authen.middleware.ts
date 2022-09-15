@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { RequestWithUser } from "interfaces/auth.interface";
-import { verifyToken } from "../jwt";
+import { verifyToken } from "../firebase/auth";
 
 export default async function authenMiddleware(
   req: Request,
@@ -15,8 +15,9 @@ export default async function authenMiddleware(
     let tokenData;
     const reqWithUser = req as RequestWithUser;
     try {
-      tokenData = verifyToken(req.headers.authorization.split(" ")[1]);
+      tokenData = await verifyToken(req.headers.authorization.split(" ")[1]);
       reqWithUser.user = tokenData;
+      console.log(tokenData);
       next();
     } catch (error) {
       console.log(error);

@@ -21,7 +21,7 @@ TaskRouter.get("/column/:columnId/all", async (req: RequestWithUser, res) => {
 TaskRouter.post("/", async (req: RequestWithUser, res) => {
   try {
     const task = new Task(req.body);
-    task.creator = req.user._id;
+    task.creator = req.user.uid;
 
     const result = await task?.save();
 

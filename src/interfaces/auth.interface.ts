@@ -1,10 +1,6 @@
 import { Request } from "express";
+import { DecodedIdToken } from "firebase-admin/auth";
 
 export interface RequestWithUser extends Request {
-  user: TokenData;
-}
-
-export interface TokenData {
-  _id: string;
-  email: string;
+  user: DecodedIdToken;
 }
