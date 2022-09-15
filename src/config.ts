@@ -1,4 +1,5 @@
 import { config } from "dotenv";
+import firebaseAccount from "./ServiceAccountKey.json";
 
 config();
 
@@ -8,8 +9,12 @@ export const {
   PORT = 3001,
   CLIENT_URL = "",
   SECRET_KEY = "",
-  FIREBASE_PRIVATE_KEY = "",
-  FIREBASE_PRIVATE_KEY_ID = "",
-  FIREBASE_PROJECT_ID = "",
-  FIREBASE_CLIENT_EMAIL = "",
 } = process.env;
+
+firebaseAccount.private_key = process.env.FIREBASE_PRIVATE_KEY.replace(
+  /\\n/g,
+  "\n"
+);
+firebaseAccount.private_key_id = process.env.FIREBASE_PRIVATE_KEY_ID;
+
+export const FirebaseAccount = firebaseAccount;

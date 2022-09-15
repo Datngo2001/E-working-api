@@ -6,22 +6,22 @@ const userSchema = new mongoose.Schema({
     require: true,
     unique: true,
   },
-  username: {
+  name: {
     type: String,
     require: false,
   },
-  avatar: {
+  photoUrl: {
     type: String,
     require: false,
   },
-  hash_password: {
-    type: String,
+  email_verified: {
+    type: Boolean,
     require: true,
   },
-  createDate: {
-    type: Date,
+  // google user id
+  uid: {
+    type: String,
     require: true,
-    default: Date.now,
   },
 });
 
