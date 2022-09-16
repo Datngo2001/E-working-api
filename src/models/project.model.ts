@@ -11,9 +11,8 @@ const projectSchema = new mongoose.Schema({
     default: Date.now,
   },
   creator: {
-    type: Schema.Types.ObjectId,
+    type: String,
     require: true,
-    ref: "User",
   },
   admins: [
     {

@@ -7,9 +7,8 @@ const stageSchema = new mongoose.Schema({
     require: true,
   },
   creator: {
-    type: Schema.Types.ObjectId,
+    type: String,
     require: true,
-    ref: "User",
   },
   createDate: {
     type: Date,

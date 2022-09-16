@@ -25,7 +25,7 @@ StageRouter.get(
 StageRouter.post("/", async (req: RequestWithUser, res) => {
   try {
     const stage = new Stage(req.body);
-    stage.creator = req.user._id;
+    stage.creator = req.user.uid;
 
     const result = await stage?.save();
 

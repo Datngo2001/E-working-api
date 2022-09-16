@@ -1,7 +1,6 @@
-import { SECRET_KEY } from "../config";
 import { NextFunction, Request, Response } from "express";
-import jsonwebtoken from "jsonwebtoken";
 import { RequestWithUser } from "interfaces/auth.interface";
+import { verifyToken } from "../firebase/auth";
 
 export default async function authenMiddleware(
   req: Request,
@@ -16,11 +15,9 @@ export default async function authenMiddleware(
     let tokenData;
     const reqWithUser = req as RequestWithUser;
     try {
-      tokenData = await jsonwebtoken.verify(
-        req.headers.authorization.split(" ")[1],
-        SECRET_KEY
-      );
+      tokenData = await verifyToken(req.headers.authorization.split(" ")[1]);
       reqWithUser.user = tokenData;
+      console.log(tokenData);
       next();
     } catch (error) {
       console.log(error);

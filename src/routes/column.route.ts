@@ -23,7 +23,7 @@ ColumnRouter.get("/board/:boardId/all", async (req: RequestWithUser, res) => {
 ColumnRouter.post("/", async (req: RequestWithUser, res) => {
   try {
     const column = new Column(req.body);
-    column.creator = req.user._id;
+    column.creator = req.user.uid;
 
     const result = await column?.save();
 
