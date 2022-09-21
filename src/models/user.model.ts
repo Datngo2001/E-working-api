@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
+  _id: {
+    type: String,
+  },
   email: {
     type: String,
     require: true,
@@ -10,17 +13,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     require: false,
   },
-  photoUrl: {
+  picture: {
     type: String,
     require: false,
   },
   email_verified: {
     type: Boolean,
-    require: true,
-  },
-  // google user id
-  uid: {
-    type: String,
     require: true,
   },
 });

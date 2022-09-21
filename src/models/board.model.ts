@@ -9,6 +9,7 @@ const boardSchema = new mongoose.Schema({
   creator: {
     type: String,
     require: true,
+    ref: "User",
   },
   createDate: {
     type: Date,
