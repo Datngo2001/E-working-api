@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 import cors from "cors";
 import { CLIENT_URL, DATABASE_URL, PORT } from "./config";
 import UserRouter from "./routes/user.route";
-import AuthRouter from "./routes/auth.route";
 import authenMiddleware from "./middlewares/authen.middleware";
 import ProjectRouter from "./routes/project.route";
 import StageRouter from "./routes/stage.route";
@@ -39,6 +38,7 @@ app.use(
 );
 app.use(authenMiddleware);
 
+app.use("/user", UserRouter);
 app.use("/project", ProjectRouter);
 app.use("/stage", StageRouter);
 app.use("/board", BoardRouter);

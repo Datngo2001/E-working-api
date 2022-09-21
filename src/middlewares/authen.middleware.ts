@@ -17,7 +17,7 @@ export default async function authenMiddleware(
     try {
       tokenData = await verifyToken(req.headers.authorization.split(" ")[1]);
       reqWithUser.user = tokenData;
-      console.log(tokenData);
+
       next();
     } catch (error) {
       console.log(error);

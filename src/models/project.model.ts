@@ -13,6 +13,7 @@ const projectSchema = new mongoose.Schema({
   creator: {
     type: String,
     require: true,
+    ref: "User",
   },
   admins: [
     {
