@@ -12,13 +12,11 @@ export default async function authenMiddleware(
     let tokenData;
     const reqWithUser = req as RequestWithUser;
     try {
-      console.log(token);
       tokenData = await verifyToken(token);
       reqWithUser.user = tokenData;
 
       next();
     } catch (error) {
-      console.log(error);
       next(error);
     }
   } else {
