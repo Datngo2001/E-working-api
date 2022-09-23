@@ -17,13 +17,13 @@ const projectSchema = new mongoose.Schema({
   },
   admins: [
     {
-      type: Schema.Types.ObjectId,
+      type: String,
       ref: "User",
     },
   ],
   members: [
     {
-      type: Schema.Types.ObjectId,
+      type: String,
       ref: "User",
     },
   ],
