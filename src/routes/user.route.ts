@@ -11,10 +11,19 @@ UserRouter.use(needloginMiddleware);
 
 UserRouter.post("/sync-with-firebase", async (req: RequestWithUser, res) => {
   try {
-    const user = new User(req.user);
-    user._id = req.user.uid;
-    const result = await user?.save();
-    res.json(result);
+    let user;
+    if (await User.exists({ _id: req.user.uid })) {
+      user = await User.findByIdAndUpdate(
+        req.user.uid,
+        { ...req.user },
+        { new: true }
+      );
+    } else {
+      const newUser = new User(req.user);
+      newUser._id = req.user.uid;
+      user = await newUser?.save();
+    }
+    res.json(user);
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
