@@ -7,15 +7,13 @@ export default async function authenMiddleware(
   res: Response,
   next: NextFunction
 ) {
-  if (
-    req.headers &&
-    req.headers.authorization &&
-    req.headers.authorization.split(" ")[0] === "Bearer"
-  ) {
+  const [prefix, token] = req.headers.authorization.split(" ");
+  if (req.headers && req.headers.authorization && prefix === "Bearer") {
     let tokenData;
     const reqWithUser = req as RequestWithUser;
     try {
-      tokenData = await verifyToken(req.headers.authorization.split(" ")[1]);
+      console.log(token);
+      tokenData = await verifyToken(token);
       reqWithUser.user = tokenData;
 
       next();
