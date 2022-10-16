@@ -15,15 +15,9 @@ const projectSchema = new mongoose.Schema({
     require: true,
     ref: "User",
   },
-  admins: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
-  ],
   members: [
     {
-      type: Schema.Types.ObjectId,
+      type: String,
       ref: "User",
     },
   ],

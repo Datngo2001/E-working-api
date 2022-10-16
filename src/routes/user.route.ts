@@ -13,9 +13,10 @@ UserRouter.post("/sync-with-firebase", async (req: RequestWithUser, res) => {
   try {
     let user;
     if (await User.exists({ _id: req.user.uid })) {
+      const { uid, update } = req.user;
       user = await User.findByIdAndUpdate(
         req.user.uid,
-        { ...req.user },
+        { ...update },
         { new: true }
       );
     } else {
