@@ -61,7 +61,7 @@ StageRouter.put("/:stageId", async (req: RequestWithUser, res) => {
 StageRouter.delete("/:stageId", async (req: RequestWithUser, res) => {
   try {
     const result = await Stage.findOneAndDelete({
-      _id: req.params.projectId,
+      _id: req.params.stageId,
     });
     res.json(result);
   } catch (error: any) {
