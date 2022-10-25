@@ -35,7 +35,9 @@ ProjectRouter.get("/:id/members", async (req: RequestWithUser, res) => {
 
 ProjectRouter.get("/my/all", async (req: RequestWithUser, res) => {
   try {
-    const projects = await Project.find({ creator: req.user.uid });
+    const projects = await Project.find({
+      $or: [{ creator: req.user.uid }, { members: req.user.uid }],
+    });
     res.json(projects);
   } catch (error: any) {
     res.status(500).json({ message: error.message });
